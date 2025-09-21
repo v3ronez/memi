@@ -1,0 +1,30 @@
+package ui
+
+import "github.com/v3ronez/memi/utils"
+
+templ Navigation() {
+	<div class="navbar bg-base-100 border-b border-b-gray-600">
+		<div class="flex-1">
+			<a class="btn btn-ghost text-xl text-primary">Memi</a>
+		</div>
+		<div class="flex-none">
+			<ul class="menu menu-horizontal px-1 mx-5">
+				if utils.GetUserFromCtx(ctx) != nil {
+					<li><a>Profile</a></li>
+					<li><a>Store</a></li>
+					<li>
+						<details>
+							<summary>Actions</summary>
+							<ul class="bg-base-100 rounded-t-none p-2">
+								<li><a>Settings</a></li>
+							</ul>
+						</details>
+					</li>
+					<li><a>Logout</a></li>
+				} else {
+					<a class="btn btn-primary">Login</a>
+				}
+			</ul>
+		</div>
+	</div>
+}

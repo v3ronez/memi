@@ -5,11 +5,12 @@ import (
 	"net/http"
 )
 
-func HandleTempl(h func(http.ResponseWriter, *http.Request) error) http.HandlerFunc {
+type TemplView = func(http.ResponseWriter, *http.Request) error
+
+func HandleTempl(handler TemplView) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if err := h(w, r); err != nil {
-			slog.Error("Error to render page", "err", err)
-			return
+		if err := handler(w, r); err != nil {
+			slog.Error("Internal server error", "error:", err, "path", r.URL.Path)
 		}
 	}
 }

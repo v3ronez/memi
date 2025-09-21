@@ -1,5 +1,9 @@
 package home
 
+import "github.com/v3ronez/memi/view/layout"
+
 templ Index() {
-	<h1>Test</h1>
+	@layout.App(true) {
+		<h1 class="text-4xl text-primary">teste da silva</h1>
+	}
 }
