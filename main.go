@@ -28,7 +28,8 @@ func main() {
 
 	renderTempl := handler.HandleTempl
 	router.Handle("/*", http.StripPrefix("/", http.FileServer(http.FS(FS))))
-	router.Get("/", renderTempl(handler.HomeHandleIndex))
+	router.Get("/", renderTempl(handler.HandleHomeIndex))
+	router.Get("/login", renderTempl(handler.HandleLoginIndex))
 
 	port := os.Getenv("HTTP_ADDR")
 	addr := fmt.Sprintf(":%s", port)

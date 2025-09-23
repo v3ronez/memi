@@ -1,6 +1,7 @@
 package ui
 
 import "github.com/v3ronez/memi/utils"
+import "strings"
 
 templ Navigation() {
 	<div class="navbar bg-base-100 border-b border-b-gray-600">
@@ -14,13 +15,13 @@ templ Navigation() {
 					<li><a>Store</a></li>
 					<li>
 						<details>
-							<summary>Actions</summary>
+							<summary>{ strings.ToLower(utils.GetUserFromCtx(ctx).Email) }</summary>
 							<ul class="bg-base-100 rounded-t-none p-2">
-								<li><a>Settings</a></li>
+								<li><a>Profile</a></li>
+								<li><a>Logout</a></li>
 							</ul>
 						</details>
 					</li>
-					<li><a>Logout</a></li>
 				} else {
 					<a class="btn btn-primary">Login</a>
 				}
